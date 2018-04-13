@@ -1,5 +1,4 @@
 # Exercise 1: working with data frames (review)
-
 # Install devtools package: allows installations from GitHub
 install.packages("devtools")
 
@@ -11,28 +10,28 @@ library(fueleconomy)
 
 # You should now have access to the `vehicles` data frame
 # You can use `View()` to inspect it
-
+View(vehicles)
 
 # Select the different manufacturers (makes) of the cars in this data set. 
 # Save this vector in a variable
-
+different_manufacturers <- vehicles$make
 
 # Use the `unique()` function to determine how many different car manufacturers
 # are represented by the data set
-
+counts_manufacturers <- length(unique(different_manufacturers))
 
 # Filter the data set for vehicles manufactured in 1997
-
+vehicles_1997 <- vehicles[vehicles$year == 1997, ]
 
 # Arrange the 1997 cars by highway (`hwy`) gas milage
 # Hint: use the `order()` function to get a vector of indices in order by value
 # See also:
 # https://www.r-bloggers.com/r-sorting-a-data-frame-by-the-contents-of-a-column/
-
+sort_hwy <- vehicles_1997[order(vehicles$hwy), ]
 
 # Mutate the 1997 cars data frame to add a column `average` that has the average
 # gas milage (between city and highway mpg) for each car
-
+vehicles_1997$average <- (vehicles_1997$hwy +vehicles_1997$cty)/2
 
 # Filter the whole vehicles data set for 2-Wheel Drive vehicles that get more
 # than 20 miles/gallon in the city. 
